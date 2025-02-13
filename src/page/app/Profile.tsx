@@ -9,6 +9,7 @@ import { faPencil, faSquareMinus, faUser } from '@fortawesome/free-solid-svg-ico
 import EditPostModal from '../../components/EditPostPopup';
 import { showToast } from '../../lib/toastPromis';
 import navigate from '../../lib/navigate';
+import apiLink from '../../lib/apilink';
 
 interface UserProfile {
   user_id: number;
@@ -21,7 +22,7 @@ interface UserProfile {
 
 async function fetchProfile() {
   
-  const res = await axios.get<UserProfile>("http://localhost:4000/account", {
+  const res = await axios.get<UserProfile>(apiLink+"/account", {
     withCredentials: true,
   });
   return res.data;

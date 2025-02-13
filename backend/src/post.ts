@@ -55,7 +55,11 @@ router.get("/post", async (req, res) => {
     const posts = await prisma.post.findMany({
       include: {
         User: true, // Include related user data
-        Commnet: true
+        Commnet: {
+          include: {
+            User: true
+          }
+        }
       },
       orderBy: {
         post_id: 'desc'
@@ -70,9 +74,18 @@ router.get("/post", async (req, res) => {
       },
       content: e.post_detail,
       image: e.post_image,
-      comments: e.Commnet.reduce((sum, data) => {
-        return sum + (data.comment_id)
-      }, 0)
+      commentCount: e.Commnet.reduce((sum, data) => {
+        return sum + 1
+      }, 0),
+      comments: e.Commnet.map(comment => ({
+        id: comment.comment_id,
+        user: {
+          name: `${comment.User.fname} ${comment.User.lname}`,
+          avatar: comment.User.profile_img
+        },
+        content: comment.comment_detail,
+        create_at: new Date()
+      }))
     }))
 
     res.json(format);

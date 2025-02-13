@@ -1,6 +1,7 @@
 import express from 'express'
 import auth from "./src/auth"
 import post from "./src/post"
+import comment from "./src/comment"
 import account from "./src/account"
 import path from 'path';
 import cors from 'cors'
@@ -19,6 +20,7 @@ app.use(cookieParser())
 app.use('/', auth)
 app.use('/', account)
 app.use('/', post)
+app.use('/', comment)
 
 app.get("/image/:filename", (req, res) => {
 

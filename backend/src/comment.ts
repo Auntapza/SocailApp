@@ -32,7 +32,7 @@ router.post('/comment/:postid', async(req, res) => {
     } catch(err) {
         const error = err as Error
         res.status(400).json({
-            msg: error
+            msg: error.message
         })
     }
 

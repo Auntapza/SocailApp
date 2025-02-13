@@ -2,6 +2,7 @@ import axios from 'axios';
 import { ChangeEvent, FormEvent, useState } from 'react';
 import { useNavigate } from 'react-router';
 import { showToast } from '../lib/toastPromis';
+import apiLink from '../lib/apilink';
 
 const Login = () => {
   const [formData, setFormData] = useState({
@@ -14,7 +15,7 @@ const Login = () => {
   const handleSubmit = async(e:FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const res = axios.post('http://localhost:4000/login', {
+    const res = axios.post(apiLink+'/login', {
       username: formData.username,
       password: formData.password
     }, {

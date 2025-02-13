@@ -2,6 +2,7 @@ import axios from 'axios';
 import { ChangeEvent, FormEvent, useState } from 'react';
 import { showToast } from '../lib/toastPromis';
 import { useNavigate } from 'react-router';
+import apiLink from '../lib/apilink';
 
 const Register = () => {
   const [formData, setFormData] = useState({
@@ -16,7 +17,7 @@ const Register = () => {
   const handleSubmit = async(e:FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const res = axios.post('http://localhost:4000/register', {
+    const res = axios.post(apiLink+'/register', {
       username: formData.username,
       password: formData.password,
       fname: formData.firstName,
