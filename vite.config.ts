@@ -8,11 +8,15 @@ export default defineConfig({
     tailwindcss()
   ],
   server: {
-    port: 3000
+    port: 3000,
+    host: "0.0.0.0",
   },
   build: {
     outDir: "dist",
     assetsDir: "assets"
   },
-  base: '/'
+  base: '/',
+  preview: {
+    allowedHosts: ["socailapp-production.up.railway.app"]
+  }
 })
