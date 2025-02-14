@@ -6,6 +6,6 @@ export default function uploadImage(imageData: string) {
       const name = Date.now();
       const filePath = `./upload/${name}.png`
       fs.writeFileSync(filePath, base64Data, { encoding: "base64" });
-      return `http://localhost:4000/image/${name}.png`;
+      return `https://social-app-api-production.up.railway.app/image/${name}.png`;
 
 }
